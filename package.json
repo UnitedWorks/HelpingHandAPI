@@ -1,0 +1,28 @@
+{
+  "name": "helpinghandapi",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnitedWorks/HelpingHandAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UnitedWorks/HelpingHandAPI/issues"
+  },
+  "homepage": "https://github.com/UnitedWorks/HelpingHandAPI#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "body-parser": "^1.17.1",
+    "bookshelf": "^0.10.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "knex": "^0.13.0"
+  }
+}
