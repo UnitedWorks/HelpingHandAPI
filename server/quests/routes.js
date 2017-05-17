@@ -5,16 +5,15 @@ const router = new Router();
 
 router.route('/')
   .get((req, res, next) => {
-    const query = Quest.where(req.query);
     if (req.query.id) {
-      query.fetch({ withRelated: ['goals', 'goals.proofs', 'goals.proofs.users'] })
+      Quest.where({ id: req.query.id }).fetch({ withRelated: ['goals', 'goals.proofs', 'goals.proofs.users'] })
         .then((data) => {
           res.status(200).send({
             quest: data.toJSON(),
           });
         });
     } else {
-      query.fetchAll({ withRelated: ['goals'] })
+      Quest.fetchAll({ withRelated: ['goals'] })
         .then((data) => {
           res.status(200).send({
             quests: data.toJSON(),

@@ -26,4 +26,7 @@ export const Proof = bookshelf.Model.extend({
 export const Quest = bookshelf.Model.extend({
   tableName: 'quests',
   hasTimeStamps: true,
+  goals() {
+    return this.hasMany(Goal, 'quest_id');
+  },
 });
