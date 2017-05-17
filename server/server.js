@@ -10,10 +10,10 @@ app.use(bodyParser.json({
 }));
 
 // API Routes
-app.use(require('./quests/routes'));
-app.use(require('./users/routes'));
+app.use('/quests', require('./quests/routes'));
+app.use('/users', require('./users/routes'));
 
 // Start Server
 app.listen(port, () => {
-  logger.info(`Server listening at port: ${port}`);
+  console.log(`Server listening at port: ${port}`);
 });
