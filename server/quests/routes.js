@@ -23,6 +23,7 @@ router.route('/')
   })
   .post((req, res, next) => {
     const quest = req.body.quest;
+    delete quest.goals;
     const goals = req.body.quest.goals;
     Quest.forge(req.body.quest).save().then((newQuest) => {
       const goalForges = [];
