@@ -7,9 +7,6 @@ export const Goal = bookshelf.Model.extend({
   quest(){
     return this.hasOne(Quest, 'quest_id');
   },
-  proofs(){
-    return this.belongsToMany(Proof, 'goal_id');
-  }
 });
 
 export const Proof = bookshelf.Model.extend({

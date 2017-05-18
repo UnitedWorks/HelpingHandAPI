@@ -28,8 +28,11 @@ router.route('/')
     Quest.forge(req.body.quest).save().then((newQuest) => {
       const goalForges = [];
       goals.forEach((goal) => {
+        console.log('//////')
+        console.log(goal)
+        console.log('//////')
         if (goal.ask.length > 0 && goal.giving.length > 0 && goal.proof_instructions.length > 0) {
-          goalForges.push(Goal.forge({ ...goal, quest_id: newQuest.get('id')}).save());
+          goalForges.push(Goal.forge({ ...goal, quest_id: newQuest.toJSON().id}).save());
         }
       });
       Promise.all(goalForges).then(() => {
