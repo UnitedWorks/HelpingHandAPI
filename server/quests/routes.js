@@ -13,7 +13,7 @@ router.route('/')
           });
         });
     } else {
-      Quest.fetchAll({ withRelated: ['goals'] })
+      Quest.where({ approved: true }).fetchAll({ withRelated: ['goals'] })
         .then((data) => {
           res.status(200).send({
             quests: data.toJSON(),
