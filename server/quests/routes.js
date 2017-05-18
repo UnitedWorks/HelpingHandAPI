@@ -29,7 +29,7 @@ router.route('/')
       const goalForges = [];
       goals.forEach((goal) => {
         if (goal.ask.length > 0 && goal.giving.length > 0 && goal.proof_instructions.length > 0) {
-          goalForges.push(Goal.forge({ ...goal, quest_id: newQuest.get('id')}));
+          goalForges.push(Goal.forge({ ...goal, quest_id: newQuest.get('id')}).save());
         }
       });
       Promise.all(goalForges).then(() => {
