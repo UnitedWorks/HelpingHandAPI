@@ -3,28 +3,28 @@ import aws from 'aws-sdk';
 import express from 'express';
 
 function S3Router(options) {
-  var S3_BUCKET = options.bucket;
+  const S3_BUCKET = options.bucket;
 
   if (!S3_BUCKET) {
-    throw new Error("S3_BUCKET is required.");
+    throw new Error('S3_BUCKET is required.');
   }
 
-  var router = express.Router();
+  const router = express.Router();
 
   function findType(string) {
-    var n = string.lastIndexOf('/');
+    const n = string.lastIndexOf('/');
     return string.substring(n+1);
   }
 
   router.get('/sign', function(req, res) {
-    var filename = req.query.objectName;
-    var mimeType = req.query.contentType;
-    var ext = '.' + findType(mimeType);
-    var fileKey = filename + ext;
+    const filename = req.query.objectName;
+    const mimeType = req.query.contentType;
+    const ext = '.' + findType(mimeType);
+    const fileKey = filename + ext;
 
-    var s3 = new aws.S3();
+    const s3 = new aws.S3();
 
-    var params = {
+    const params = {
       Bucket: S3_BUCKET,
       Key: fileKey,
       Expires: 600,
@@ -35,11 +35,10 @@ function S3Router(options) {
     s3.getSignedUrl('putObject', params, function(err, data) {
       if (err) {
         console.log(err);
-        return res.send(500, "Cannot create S3 signed URL");
+        return res.status(500).send('Cannot create S3 signed URL');
       }
-
       console.log('data: ', data)
-      res.json({
+      res.status(200).json({
         signedUrl: data,
         publicUrl: 'https://s3.amazonaws.com/'+ S3_BUCKET + '/' + fileKey,
         filename: filename
