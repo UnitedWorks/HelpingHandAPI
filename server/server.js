@@ -18,7 +18,7 @@ app.use(cors());
 app.use('/quests', require('./quests/routes'));
 app.use('/users', require('./users/routes'));
 app.use('/s3', s3Router({
-  bucket: process.env.AWS_S3_BUCKET,
+  bucket: 'helping.community/videos',
   ACL: 'public-read'
 }))
 
