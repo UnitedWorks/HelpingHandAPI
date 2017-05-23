@@ -22,7 +22,10 @@ function S3Router(options) {
     const ext = '.' + findType(mimeType);
     const fileKey = filename + ext;
 
-    const s3 = new aws.S3();
+    const s3 = new aws.S3({
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_KEY,
+    });
 
     const params = {
       Bucket: S3_BUCKET,
