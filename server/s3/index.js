@@ -25,6 +25,7 @@ function S3Router(options) {
     const s3 = new aws.S3({
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_KEY,
+      region: 'us-east-1',
     });
 
     const params = {
